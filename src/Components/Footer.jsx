@@ -10,6 +10,9 @@ import {
     Input,
     IconButton,
     useColorModeValue,
+    Grid,
+    GridItem,
+    Image
   } from '@chakra-ui/react';
   import { ReactNode } from 'react';
   import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
@@ -70,7 +73,57 @@ import {
   };
   
   export default function LargeWithNewsletter() {
-    return (
+    return (<>
+      <Grid templateColumns='repeat(4, 1fr)' gap={1} >
+        <GridItem padding={"18px"} backgroundColor="black" color={"white"}>
+          <Box display={"flex"}>
+          <Box width={"25%"}>
+          <Image src="https://i.ibb.co/SPSPkVw/customer-service-agent-2.png"/>
+          </Box>
+          <Box marginLeft={"15px"}>
+          <Text fontWeight={550} fontSize={"14px"}  textAlign="start">ORDER ASSISTANCE ▶</Text>
+          <Text fontSize={"10px"} textAlign="start">Get help with ordering on our
+app, online or by phone</Text>
+          </Box>
+          </Box> 
+        </GridItem>
+        <GridItem padding={"18px"} backgroundColor="black" color={"white"}>
+          <Box display={"flex"}>
+          <Box width={"25%"}>
+          <Image src="https://i.ibb.co/f87ytqf/tracking.png"/>
+          </Box>
+          <Box marginLeft={"15px"}>
+          <Text fontWeight={550} fontSize={"14px"}  textAlign="start">ORDER ASSISTANCE ▶</Text>
+          <Text fontSize={"10px"} textAlign="start">Get help with ordering on our
+app, online or by phone</Text>
+          </Box>
+          </Box> 
+        </GridItem>
+        <GridItem padding={"18px"} backgroundColor="black" color={"white"}>
+          <Box display={"flex"}>
+          <Box width={"25%"}>
+          <Image src="https://i.ibb.co/R2DKMCp/return-1.png"/>
+          </Box>
+          <Box marginLeft={"15px"}>
+          <Text fontWeight={550} fontSize={"14px"}  textAlign="start">ORDER ASSISTANCE ▶</Text>
+          <Text fontSize={"10px"} textAlign="start">Get help with ordering on our
+app, online or by phone</Text>
+          </Box>
+          </Box> 
+        </GridItem>
+        <GridItem padding={"18px"} backgroundColor="black" color={"white"}>
+          <Box display={"flex"}>
+          <Box width={"25%"}>
+          <Image src="https://i.ibb.co/9Ym4CZj/store.png"/>
+          </Box>
+          <Box marginLeft={"15px"}>
+          <Text fontWeight={550} fontSize={"14px"}  textAlign="start">ORDER ASSISTANCE ▶</Text>
+          <Text fontSize={"10px"} textAlign="start">Get help with ordering on our
+app, online or by phone</Text>
+          </Box>
+          </Box> 
+        </GridItem>
+      </Grid>
       <Box
         bg={useColorModeValue('gray.50', 'gray.900')}
         color={useColorModeValue('gray.700', 'gray.200')}>
@@ -138,5 +191,6 @@ import {
           </SimpleGrid>
         </Container>
       </Box>
+      </>
     );
   }

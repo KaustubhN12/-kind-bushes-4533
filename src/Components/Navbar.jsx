@@ -14,7 +14,8 @@ import {
     useColorModeValue,
     useBreakpointValue,
     useDisclosure,
-    Input
+    Input,
+    Image
   } from '@chakra-ui/react';
   import {
     HamburgerIcon,
@@ -52,19 +53,21 @@ export default function Nav () {
             />
           </Flex>
           <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-            <Text
+            {/* <Text
               textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
               fontFamily={'heading'}
               color={useColorModeValue('gray.800', 'white')}>
-              Logo
-            </Text>
-  
-            <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
+            </Text> */}
+             <Image
+              width={"170px"}
+              src='https://i.ibb.co/k4XjPHX/Minimalist-Simple-Brand-Initial-Logo-final.png' alt='Dan Abramov' />
+               
+            <Flex display={{ base: 'none', md: 'flex' }} ml={10} mt="15px">
               <DesktopNav />
             </Flex>
            
           </Flex>
-          <Input placeholder='Basic usage' />
+          <Input w={"auto"} placeholder='Basic usage' />
           <Stack
             flex={{ base: 1, md: 0 }}
             justify={'flex-end'}
@@ -106,7 +109,7 @@ const DesktopNav = () => {
     const popoverContentBgColor = useColorModeValue('white', 'gray.800');
   
     return (
-      <Stack direction={'row'} spacing={4}>
+      <Stack direction={'row'} spacing={3}>
         {NAV_ITEMS.map((navItem) => (
           <Box key={navItem.label}>
             <Popover trigger={'hover'} placement={'bottom-start'}>
@@ -248,22 +251,48 @@ const DesktopNav = () => {
   
   const NAV_ITEMS = [
     {
-      label: 'Inspiration',
+      label: 'NEW ARRIVALS',
       children: [
         {
-          label: 'Explore Design Work',
+          label: 'Shoes',
+          subLabel: 'Trending Design to inspire you',
+          href: '#',
+        }
+      ]
+    },
+    {
+      label: 'MEN',
+      children: [
+        {
+          label: 'Shoes',
           subLabel: 'Trending Design to inspire you',
           href: '#',
         },
         {
-          label: 'New & Noteworthy',
-          subLabel: 'Up-and-coming Designers',
+          label: 'Basketball',
           href: '#',
         },
-      ],
+        {
+          label: 'Basketball',
+          href: '#',
+        },
+        {
+          label: 'Basketball',
+          href: '#',
+        },
+        {
+          label: 'Basketball',
+          href: '#',
+        },
+        {
+          label: 'Basketball',
+          href: '#',
+        }
+      
+      ]
     },
     {
-      label: 'Find Work',
+      label: 'WOMEN',
       children: [
         {
           label: 'Job Board',
@@ -278,11 +307,97 @@ const DesktopNav = () => {
       ],
     },
     {
-      label: 'Learn Design',
-      href: '#',
+      label: 'BOYS',
+      children: [
+        {
+          label: 'Job Board',
+          subLabel: 'Find your dream design job',
+          href: '#',
+        },
+        {
+          label: 'Freelance Projects',
+          subLabel: 'An exclusive list for contract work',
+          href: '#',
+        },
+      ],
     },
     {
-      label: 'Hire Designers',
+      label: 'GIRLS',
+      children: [
+        {
+          label: 'Job Board',
+          subLabel: 'Find your dream design job',
+          href: '#',
+        },
+        {
+          label: 'Freelance Projects',
+          subLabel: 'An exclusive list for contract work',
+          href: '#',
+        },
+      ],
+    },
+    {
+      label: 'CLOTHING',
+      children: [
+        {
+          label: 'Job Board',
+          subLabel: 'Find your dream design job',
+          href: '#',
+        },
+        {
+          label: 'Freelance Projects',
+          subLabel: 'An exclusive list for contract work',
+          href: '#',
+        },
+      ],
+    },
+    {
+      label: 'ACCESSARIES',
+      children: [
+        {
+          label: 'Job Board',
+          subLabel: 'Find your dream design job',
+          href: '#',
+        },
+        {
+          label: 'Freelance Projects',
+          subLabel: 'An exclusive list for contract work',
+          href: '#',
+        },
+      ],
+    },
+    {
+      label: 'SALE',
+      children: [
+        {
+          label: 'Job Board',
+          subLabel: 'Find your dream design job',
+          href: '#',
+        },
+        {
+          label: 'Freelance Projects',
+          subLabel: 'An exclusive list for contract work',
+          href: '#',
+        },
+      ],
+    },
+    {
+      label: 'BRAND',
+      children: [
+        {
+          label: 'Job Board',
+          subLabel: 'Find your dream design job',
+          href: '#',
+        },
+        {
+          label: 'Freelance Projects',
+          subLabel: 'An exclusive list for contract work',
+          href: '#',
+        },
+      ],
+    },
+    {
+      label: 'RELEASE',
       href: '#',
     },
   ];

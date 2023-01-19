@@ -1,5 +1,13 @@
 import React from 'react';
-import { Box, IconButton, useBreakpointValue } from '@chakra-ui/react';
+import {
+  Box,
+  IconButton,
+  useBreakpointValue,
+  Stack,
+  Heading,
+  Text,
+  Container,
+} from '@chakra-ui/react';
 // Here we have used react-icons package for the icons
 import { BiLeftArrowAlt, BiRightArrowAlt } from 'react-icons/bi';
 // And react-slick as our Carousel Lib
@@ -12,13 +20,13 @@ const settings = {
   fade: true,
   infinite: true,
   autoplay: true,
-  speed: 500,
-  autoplaySpeed: 2000,
+  speed: 600,
+  autoplaySpeed: 3000,
   slidesToShow: 1,
   slidesToScroll: 1,
 };
 
-export default function Carousel() {
+export default function CaptionCarousel() {
   // As we have used custom buttons, we need a reference variable to
   // change the state
   const [slider, setSlider] = React.useState(null);
@@ -26,13 +34,23 @@ export default function Carousel() {
   // These are the breakpoints which changes the position of the
   // buttons as the screen size changes
   const top = useBreakpointValue({ base: '90%', md: '50%' });
-  const side = useBreakpointValue({ base: '30%', md: '10px' });
+  const side = useBreakpointValue({ base: '30%', md: '40px' });
 
-  // These are the images used in the slide
+  // This list contains all the data for carousels
+  // This can be static or loaded from a server
   const cards = [
-    'https://images.unsplash.com/photo-1612852098516-55d01c75769a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDR8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
-    'https://images.unsplash.com/photo-1627875764093-315831ac12f7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
-    'https://images.unsplash.com/photo-1571432248690-7fd6980a1ae2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDl8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=900&q=60',
+    {
+      image:
+        'https://finishline.a.bigcontent.io/v1/static/FNL_121922_OSP_NewBalance_HP_Slider_Desktop_1213x600',
+    },
+    {
+      image:
+        'https://finishline.a.bigcontent.io/v1/static/FNL_112922_Air_Max_HP_Slider_Desktop_1213x600',
+    },
+    {
+      image:
+        'https://finishline.a.bigcontent.io/v1/static/FNL_052322_Goorin_Bros_CoOp_BottomSlider_Desktop_1213x600',
+    },
   ];
 
   return (
@@ -56,41 +74,56 @@ export default function Carousel() {
       {/* Left Icon */}
       <IconButton
         aria-label="left-arrow"
-        colorScheme="messenger"
-        borderRadius="full"
+        variant="ghost"
         position="absolute"
         left={side}
         top={top}
         transform={'translate(0%, -50%)'}
         zIndex={2}
         onClick={() => slider?.slickPrev()}>
-        <BiLeftArrowAlt />
+        <BiLeftArrowAlt size="40px" />
       </IconButton>
       {/* Right Icon */}
       <IconButton
         aria-label="right-arrow"
-        colorScheme="messenger"
-        borderRadius="full"
+        variant="ghost"
         position="absolute"
         right={side}
         top={top}
         transform={'translate(0%, -50%)'}
         zIndex={2}
         onClick={() => slider?.slickNext()}>
-        <BiRightArrowAlt />
+        <BiRightArrowAlt size="40px" />
       </IconButton>
       {/* Slider */}
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
-        {cards.map((url, index) => (
+        {cards.map((card, index) => (
           <Box
             key={index}
-            height={'6xl'}
+            height={'auto'}
             position="relative"
             backgroundPosition="center"
             backgroundRepeat="no-repeat"
             backgroundSize="cover"
-            backgroundImage={`url(${url})`}
-          />
+            backgroundImage={`url(${card.image})`}>
+            {/* This is the block you need to change, to customize the caption */}
+            <Container size="container.lg" height="600px" position="relative">
+              <Stack
+                spacing={6}
+                w={'full'}
+                maxW={'lg'}
+                position="absolute"
+                top="50%"
+                transform="translate(0, -50%)">
+                <Heading fontSize={{ base: '3xl', md: '4xl', lg: '5xl' }}>
+                  {card.title}
+                </Heading>
+                <Text fontSize={{ base: 'md', lg: 'lg' }} color="GrayText">
+                  {card.text}
+                </Text>
+              </Stack>
+            </Container>
+          </Box>
         ))}
       </Slider>
     </Box>
