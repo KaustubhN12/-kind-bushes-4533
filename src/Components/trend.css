@@ -1,0 +1,21 @@
+
+  .slick-slide > div {
+    margin: 0 10px;
+  }
+  .slick-list {
+    margin: 0 -10px;
+  }
+  
+  .cards{
+    /* overflow: hidden; */
+    /* height: 410px; */
+    color:black ;
+    cursor: pointer; 
+  }
+  .card-tops > img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    background: black;
+  }
+  

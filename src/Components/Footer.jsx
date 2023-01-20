@@ -74,7 +74,7 @@ import {
   
   export default function LargeWithNewsletter() {
     return (<>
-      <Grid templateColumns='repeat(4, 1fr)' gap={1} >
+      <Grid templateColumns={['repeat(1, 1fr)','repeat(2, 1fr)','repeat(4, 1fr)']} gap={1} marginTop="30px" >
         <GridItem padding={"18px"} backgroundColor="black" color={"white"}>
           <Box display={"flex"}>
           <Box width={"25%"}>
@@ -133,10 +133,11 @@ app, online or by phone</Text>
             spacing={8}>
             <Stack spacing={6}>
               <Box>
-              <Logo color={useColorModeValue('gray.700', 'white')} />
+              {/* <Logo color={useColorModeValue('gray.700', 'white')} /> */}
+              <Image src='https://i.ibb.co/k4XjPHX/Minimalist-Simple-Brand-Initial-Logo-final.png'/>
               </Box>
               <Text fontSize={'sm'}>
-                © 2022 Chakra Templates. All rights reserved
+              2023 Finish Line, Inc. All Rights Reserved
               </Text>
               <Stack direction={'row'} spacing={6}>
                 <SocialButton label={'Twitter'} href={'#'}>
@@ -150,27 +151,31 @@ app, online or by phone</Text>
                 </SocialButton>
               </Stack>
             </Stack>
-            <Stack align={'flex-start'}>
-              <ListHeader>Company</ListHeader>
-              <Link href={'#'}>About us</Link>
+            <Stack align={'flex-start'} fontSize="xs">
+              <ListHeader>GET TO KNOW US</ListHeader>
+              <Link href={'#'}>Our Company</Link>
+              <Link href={'#'}>Our Brand Family</Link>
+              <Link href={'#'}>Youth Foundation</Link>
+              <Link href={'#'}>Careers</Link>
               <Link href={'#'}>Blog</Link>
-              <Link href={'#'}>Contact us</Link>
-              <Link href={'#'}>Pricing</Link>
-              <Link href={'#'}>Testimonials</Link>
             </Stack>
-            <Stack align={'flex-start'}>
-              <ListHeader>Support</ListHeader>
-              <Link href={'#'}>Help Center</Link>
-              <Link href={'#'}>Terms of Service</Link>
-              <Link href={'#'}>Legal</Link>
-              <Link href={'#'}>Privacy Policy</Link>
-              <Link href={'#'}>Satus</Link>
+            <Stack align={'flex-start'} fontSize="xs">
+              <ListHeader>CUSTOMER CARE</ListHeader>
+              <Link href={'#'}>FAQs</Link>
+              <Link href={'#'}>Policies</Link>
+              <Link href={'#'}>Return Policies</Link>
+              <Link href={'#'}>Cancel an Order</Link>
+              <Link href={'#'}>Contact Us</Link>
+              <Link href={'#'}>Accessibility Policy </Link>
             </Stack>
-            <Stack align={'flex-start'}>
-              <ListHeader>Stay up to date</ListHeader>
+            <Stack align={'flex-start'} fontSize="xs">
+            <ListHeader>GIFT CARDS</ListHeader>
+              <Link href={'#'}>Buy a Gift Card</Link>
+              <Link href={'#'}>Check Your Balance</Link>
+              <ListHeader>GET ON THE LIST</ListHeader>
               <Stack direction={'row'}>
                 <Input
-                  placeholder={'Your email address'}
+                  placeholder={'Enter Your email'}
                   bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
                   border={0}
                   _focus={{
@@ -178,10 +183,10 @@ app, online or by phone</Text>
                   }}
                 />
                 <IconButton
-                  bg={useColorModeValue('green.400', 'green.800')}
+                  bg={useColorModeValue('blue.400', 'blue.400')}
                   color={useColorModeValue('white', 'gray.800')}
                   _hover={{
-                    bg: 'green.600',
+                    bg: 'blue.400',
                   }}
                   aria-label="Subscribe"
                   icon={<BiMailSend />}
