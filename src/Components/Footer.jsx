@@ -74,8 +74,9 @@ import {
   
   export default function LargeWithNewsletter() {
     return (<>
+    <div style={{width:"80%",margin:"auto"}}>
       <Grid templateColumns={['repeat(1, 1fr)','repeat(2, 1fr)','repeat(4, 1fr)']} gap={1} marginTop="30px" >
-        <GridItem padding={"18px"} backgroundColor="black" color={"white"}>
+        <GridItem padding={"18px"} backgroundColor="#333333" color={"white"}>
           <Box display={"flex"}>
           <Box width={"25%"}>
           <Image src="https://i.ibb.co/SPSPkVw/customer-service-agent-2.png"/>
@@ -87,7 +88,7 @@ app, online or by phone</Text>
           </Box>
           </Box> 
         </GridItem>
-        <GridItem padding={"18px"} backgroundColor="black" color={"white"}>
+        <GridItem padding={"18px"} backgroundColor="#333333" color={"white"}>
           <Box display={"flex"}>
           <Box width={"25%"}>
           <Image src="https://i.ibb.co/f87ytqf/tracking.png"/>
@@ -99,7 +100,7 @@ app, online or by phone</Text>
           </Box>
           </Box> 
         </GridItem>
-        <GridItem padding={"18px"} backgroundColor="black" color={"white"}>
+        <GridItem padding={"18px"} backgroundColor="#333333" color={"white"}>
           <Box display={"flex"}>
           <Box width={"25%"}>
           <Image src="https://i.ibb.co/R2DKMCp/return-1.png"/>
@@ -111,7 +112,7 @@ app, online or by phone</Text>
           </Box>
           </Box> 
         </GridItem>
-        <GridItem padding={"18px"} backgroundColor="black" color={"white"}>
+        <GridItem padding={"18px"} backgroundColor="#333333" color={"white"}>
           <Box display={"flex"}>
           <Box width={"25%"}>
           <Image src="https://i.ibb.co/9Ym4CZj/store.png"/>
@@ -196,6 +197,7 @@ app, online or by phone</Text>
           </SimpleGrid>
         </Container>
       </Box>
+      </div>
       </>
     );
   }

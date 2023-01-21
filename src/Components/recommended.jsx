@@ -56,7 +56,7 @@ function Recommended() {
 
   return (
     <div style={{marginBottom:"40px",marginTop:"20px"}}>
-      <Slider {...settings}>
+      <Slider {...settings} className="customSlide">
         {dataDigitalBestSeller.map((item) => (
           <div className="card">
             <div className="card-top">

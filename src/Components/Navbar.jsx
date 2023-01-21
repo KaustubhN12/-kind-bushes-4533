@@ -7,7 +7,6 @@ import {
     Stack,
     Collapse,
     Icon,
-    Link,
     Popover,
     PopoverTrigger,
     PopoverContent,
@@ -22,27 +21,60 @@ import {
     CloseIcon,
     ChevronDownIcon,
     ChevronRightIcon,
+    SearchIcon,
   } from '@chakra-ui/icons';
-  
+  import { Link } from 'react-router-dom';
+  // import {Link as RouterLink} from "react-router-dom"
+  import navStyles from './navbar.module.css';
+import { FaPersonBooth, FaPhoenixSquadron, FaSearchLocation } from 'react-icons/fa';
+import { BiCart, BiCategory, BiLocationPlus } from 'react-icons/bi';
 
 export default function Nav () {
     const { isOpen, onToggle } = useDisclosure();
     return(
-        <Box>
-          <Box display={"flex"} alignItems="center" >
+      <div className={navStyles.mobileNav}>
+        <Box >
+          <Box display={"flex"} flexDirection={["column","column","row"]} alignItems="center"  bgColor={"white"}   >
            <Box>
+            <Link to={"/"}>
            <Image
-              width={"170px"}
-              src='https://i.ibb.co/k4XjPHX/Minimalist-Simple-Brand-Initial-Logo-final.png' alt='Dan Abramov' />
+              width={["300px","400px","170px"]}
+              marginLeft={["30px","50px","25px"]}
+              marginRight="380px"
+              src='https://i.ibb.co/k4XjPHX/Minimalist-Simple-Brand-Initial-Logo-final.png' alt='Dan Abramov' /></Link>
            </Box>
-           <Box>
-            <Input width={"900px"} placeholder='Search' />
+           <Box border={"1px solid gray"} paddingBottom="5px" paddingLeft="10px">
+            <Box as='span' fontSize={"24px"} color="gray.300">
+              <SearchIcon/>
+            </Box>
+            <Input paddingLeft="10px" variant='unstyled' width={["auto","auto","400px"]} border="none" placeholder='Search' />
            </Box>
+           <Box display={"flex"} border={"1px solid gray"} py="9px" paddingLeft={["48px","48px","5px"]} paddingRight={["48px","48px","5px"]} >
+           <Box as='span' fontSize={"24px"} color="gray.300">
+              <BiLocationPlus/>
+            </Box>
+            <Box>Choose a Store</Box>
+            </Box>
+            <Box display={"flex"} border={"1px solid gray"} py="9px" paddingLeft={["72px","72px","5px"]} paddingRight={["72px","72px","5px"]} >
+           <Box as='span' fontSize={"24px"} color="gray.300">
+              <FaPhoenixSquadron/>
+            </Box>
+            <Box>Account</Box>
+            </Box>
+            <Box display={"flex"} border={"1px solid gray"} py="9px" paddingLeft={["88px","88px","5px"]} paddingRight={["88px","88px","5px"]} >
+           <Box as='span' fontSize={"24px"} color="gray.300">
+              <BiCart/>
+            </Box>
+            <Link to="/cart">
+            <Box>Bag</Box>
+            </Link>
+            </Box>
           </Box>
         <Flex
           bg={useColorModeValue('white', 'gray.800')}
           color={useColorModeValue('gray.600', 'white')}
           minH={'auto'}
+          // position={"static"}
           py={{ base:0 }}
           px={{ base:4 }}
           borderBottom={1}
@@ -71,8 +103,9 @@ export default function Nav () {
               width={"170px"}
               src='https://i.ibb.co/k4XjPHX/Minimalist-Simple-Brand-Initial-Logo-final.png' alt='Dan Abramov' /> */}
                
-            <Flex display={{ base: 'none', md: 'flex' }} ml={10} paddingBottom="14px">
+            <Flex display={{ base: 'none', md: 'flex' }} ml={10} paddingBottom="14px" fontSize={"14px"} >
               <DesktopNav />
+              {/* <Link to ='/menssection'>mensfudhf</Link> */}
             </Flex>
         </Flex>
   
@@ -80,14 +113,14 @@ export default function Nav () {
           <MobileNav />
         </Collapse>
         {/* lower-section */}
-        <Box w={"100%"} h="auto" bg={"black"} p="10px" fontSize={"12px"} 
+        <Box w={"100%"} h="auto" backgroundColor={"#333333"} p="10px" fontSize={"12px"} 
     textAlign="center" fontWeight={500}>
       <Text color={"white"}>BOOST YOUR STATUS </Text>
       <Text color={"white"}>Stay in the loop for releases,shipping promotion, and more</Text>
-      <Link color={"white"} textDecoration="underline">Join for Free or Sign In</Link>
+      <Link> <Text color={"white"} textDecoration="underline">Join for Free or Sign In</Text></Link>
     </Box>
       </Box>
-      
+       </div>
     )
 }
 
@@ -104,7 +137,7 @@ const DesktopNav = () => {
               <PopoverTrigger>
                 <Link
                   p={2}
-                  href={navItem.href ?? '#'}
+                  to={navItem.href ?? '#'}
                   fontSize={'sm'}
                   color={linkColor}
                   _hover={{
@@ -140,7 +173,7 @@ const DesktopNav = () => {
   const DesktopSubNav = ({ label, href, subLabel }) => {
     return (
       <Link
-        href={href}
+        to={href}
         role={'group'}
         display={'block'}
         p={2}
@@ -243,7 +276,7 @@ const DesktopNav = () => {
         {
           label: 'Shoes',
           subLabel: 'Trending Design to inspire you',
-          href: '#',
+          href: '/menssection',
         }
       ]
     },
@@ -253,27 +286,7 @@ const DesktopNav = () => {
         {
           label: 'Shoes',
           subLabel: 'Trending Design to inspire you',
-          href: '#',
-        },
-        {
-          label: 'Basketball',
-          href: '#',
-        },
-        {
-          label: 'Basketball',
-          href: '#',
-        },
-        {
-          label: 'Basketball',
-          href: '#',
-        },
-        {
-          label: 'Basketball',
-          href: '#',
-        },
-        {
-          label: 'Basketball',
-          href: '#',
+          href: '/menssection',
         }
       
       ]
