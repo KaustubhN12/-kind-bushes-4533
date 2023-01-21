@@ -54,6 +54,7 @@ export default function CaptionCarousel() {
   ];
 
   return (
+    <div style={{position:"static"}} >
     <Box
       position={'relative'}
       height={'600px'}
@@ -127,5 +128,6 @@ export default function CaptionCarousel() {
         ))}
       </Slider>
     </Box>
+    </div>
   );
 }
