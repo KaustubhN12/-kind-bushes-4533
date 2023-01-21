@@ -29,16 +29,26 @@ export default function Nav () {
     const { isOpen, onToggle } = useDisclosure();
     return(
         <Box>
+          <Box display={"flex"} alignItems="center" >
+           <Box>
+           <Image
+              width={"170px"}
+              src='https://i.ibb.co/k4XjPHX/Minimalist-Simple-Brand-Initial-Logo-final.png' alt='Dan Abramov' />
+           </Box>
+           <Box>
+            <Input width={"900px"} placeholder='Search' />
+           </Box>
+          </Box>
         <Flex
           bg={useColorModeValue('white', 'gray.800')}
           color={useColorModeValue('gray.600', 'white')}
-          minH={'60px'}
-          py={{ base: 2 }}
-          px={{ base: 4 }}
+          minH={'auto'}
+          py={{ base:0 }}
+          px={{ base:4 }}
           borderBottom={1}
           borderStyle={'solid'}
           borderColor={useColorModeValue('gray.200', 'gray.900')}
-          align={'center'}>
+          >
           <Flex
             flex={{ base: 1, md: 'auto' }}
             ml={{ base: -2 }}
@@ -52,54 +62,32 @@ export default function Nav () {
               aria-label={'Toggle Navigation'}
             />
           </Flex>
-          <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
             {/* <Text
               textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
               fontFamily={'heading'}
               color={useColorModeValue('gray.800', 'white')}>
             </Text> */}
-             <Image
+             {/* <Image
               width={"170px"}
-              src='https://i.ibb.co/k4XjPHX/Minimalist-Simple-Brand-Initial-Logo-final.png' alt='Dan Abramov' />
+              src='https://i.ibb.co/k4XjPHX/Minimalist-Simple-Brand-Initial-Logo-final.png' alt='Dan Abramov' /> */}
                
-            <Flex display={{ base: 'none', md: 'flex' }} ml={10} mt="15px">
+            <Flex display={{ base: 'none', md: 'flex' }} ml={10} paddingBottom="14px">
               <DesktopNav />
             </Flex>
-           
-          </Flex>
-          <Input w={"auto"} placeholder='Basic usage' />
-          <Stack
-            flex={{ base: 1, md: 0 }}
-            justify={'flex-end'}
-            direction={'row'}
-            spacing={6}>
-            <Button
-              as={'a'}
-              fontSize={'sm'}
-              fontWeight={400}
-              variant={'link'}
-              href={'#'}>
-              Sign In
-            </Button>
-            <Button
-              display={{ base: 'none', md: 'inline-flex' }}
-              fontSize={'sm'}
-              fontWeight={600}
-              color={'white'}
-              bg={'pink.400'}
-              href={'#'}
-              _hover={{
-                bg: 'pink.300',
-              }}>
-              Sign Up
-            </Button>
-          </Stack>
         </Flex>
   
         <Collapse in={isOpen} animateOpacity>
           <MobileNav />
         </Collapse>
+        {/* lower-section */}
+        <Box w={"100%"} h="auto" bg={"black"} p="10px" fontSize={"12px"} 
+    textAlign="center" fontWeight={500}>
+      <Text color={"white"}>BOOST YOUR STATUS </Text>
+      <Text color={"white"}>Stay in the loop for releases,shipping promotion, and more</Text>
+      <Link color={"white"} textDecoration="underline">Join for Free or Sign In</Link>
+    </Box>
       </Box>
+      
     )
 }
 
@@ -109,7 +97,7 @@ const DesktopNav = () => {
     const popoverContentBgColor = useColorModeValue('white', 'gray.800');
   
     return (
-      <Stack direction={'row'} spacing={3}>
+      <Stack direction={'row'} spacing={10} >
         {NAV_ITEMS.map((navItem) => (
           <Box key={navItem.label}>
             <Popover trigger={'hover'} placement={'bottom-start'}>
@@ -118,7 +106,6 @@ const DesktopNav = () => {
                   p={2}
                   href={navItem.href ?? '#'}
                   fontSize={'sm'}
-                  fontWeight={500}
                   color={linkColor}
                   _hover={{
                     textDecoration: 'none',

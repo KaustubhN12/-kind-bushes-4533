@@ -3,18 +3,20 @@ import CaptionCarousel from "./Components/carousel1";
 import LargeWithNewsletter from "./Components/Footer"
 import { Box,Link,Text,Image,Grid,GridItem} from "@chakra-ui/react";
 import './App.css';
+import Recommended from "./Components/recommended";
+import Trending from "./Components/trending";
 
 function App() {
   return (
     <>
     {/* upper-secton */}
     <Nav/>
-    <Box w={"100%"} h="auto" bg={"black"} p="10px" fontSize={"12px"} 
+    {/* <Box w={"100%"} h="auto" bg={"black"} p="10px" fontSize={"12px"} 
     textAlign="center" fontWeight={500}>
       <Text color={"white"}>BOOST YOUR STATUS </Text>
       <Text color={"white"}>Stay in the loop for releases,shipping promotion, and more</Text>
       <Link color={"white"} textDecoration="underline">Join for Free or Sign In</Link>
-    </Box>
+    </Box> */}
    {/* middle-section */}
     <Box w={["100%","80%"]} m="auto" textAlign={"center"}>
     <Image marginBottom={"20px"}  marginTop={"15px"} src="https://jdsports.a.bigcontent.io/v1/static/JD_FNL_011723_Jordan_Flush_Email_Banner_Desktop_1213x300"/>
@@ -76,9 +78,10 @@ function App() {
          </Grid>
        
        {/* brands-carouser */}
+
        {/* second-grid */}
        <Grid templateColumns={['repeat(1, 1fr)','repeat(1, 1fr)','repeat(3, 1fr)']} gap={6} marginTop="20px" textAlign={"start"} textDecoration="underline"
-       fontWeight={550} >
+       fontWeight={550} marginBottom="30px" >
            <GridItem>
             <Image src="https://media.finishline.com/i/finishline/FNL_011022_3Up_Tile_MostFavorited_604x604"/>
             <Link fontSize={"l"}>Most Favorited Styles</Link>
@@ -93,8 +96,14 @@ function App() {
            </GridItem>
          </Grid>
          {/* recommended for you */}
+         <Text fontWeight={700}>RECOMMENDED FOR YOU</Text>
+         <Text fontSize={"xs"}>12 items</Text>
+         <Recommended/>
          {/* trending outfits */}
+         <Text fontWeight={700}>TRENDING OUTFITS</Text>
+         <Trending/>
          {/* feature collections */}
+         <Text fontWeight={700} marginBottom="20px">FEATURED COLLECTIONS</Text>
          <Image src="https://finishline.a.bigcontent.io/v1/static/FNL_091322_Boots_Seasonal_Story_HP_Hero_Desktop_1213x600"/>
          
          <Grid templateColumns={['repeat(2, 1fr)','repeat(2, 1fr)','repeat(2, 1fr)']} gap={6} marginTop="20px" textAlign={"start"} textDecoration="underline"
@@ -163,7 +172,7 @@ function App() {
            </Box>
          </Box>
          {/* footer */}
-
+         
     <LargeWithNewsletter/>
     </Box>
 
