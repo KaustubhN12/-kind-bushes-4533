@@ -6,14 +6,15 @@ import axios, { Axios } from "axios";
 import { StarIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import LargeWithNewsletter from "../Components/Footer";
+import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
 
 
 export default function MensSection () {
 
-  const [menProducts,setMenProducts] = useState([])
+  const [menProducts,setMenProducts] = useState([]);
   
   const getData = () => {
-      axios.get(`http://localhost:8080/mensproduct`).then((data)=>setMenProducts(data.data)).catch((err)=>console.log(err))
+   axios.get(`https://brandstore.onrender.com/mensproduct`).then((data)=>setMenProducts(data.data)).catch((err)=>console.log(err));   
   }
 
   useEffect(()=>{
@@ -91,5 +92,4 @@ return (
 
         </>
     )
-
 }
