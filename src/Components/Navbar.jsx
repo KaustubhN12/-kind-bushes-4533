@@ -14,7 +14,8 @@ import {
     useBreakpointValue,
     useDisclosure,
     Input,
-    Image
+    Image,
+    Badge
   } from '@chakra-ui/react';
   import {
     HamburgerIcon,
@@ -28,9 +29,12 @@ import {
   import navStyles from './navbar.module.css';
 import { FaPersonBooth, FaPhoenixSquadron, FaSearchLocation } from 'react-icons/fa';
 import { BiCart, BiCategory, BiLocationPlus } from 'react-icons/bi';
+import { CartContext } from "../Context/cartcontext";
+import { useContext } from "react";
 
 export default function Nav () {
     const { isOpen, onToggle } = useDisclosure();
+    const {cartItem} = useContext(CartContext);
     return(
       <div className={navStyles.mobileNav}>
         <Box >
@@ -66,7 +70,9 @@ export default function Nav () {
               <BiCart/>
             </Box>
             <Link to="/cart">
-            <Box>Bag</Box>
+            <Box>Bag<Badge position={["static","static","absolute"]} marginTop={["","","-17px"]} marginLeft={["","","-10px"]} borderRadius='full' px='2' colorScheme="blue">
+             {cartItem.length==0?"":cartItem.length}
+          </Badge></Box>
             </Link>
             </Box>
           </Box>
@@ -285,84 +291,140 @@ const DesktopNav = () => {
       children: [
         {
           label: 'Shoes',
-          subLabel: 'Trending Design to inspire you',
+          subLabel: 'Trending Styles',
           href: '/menssection',
-        }
-      
+        },
+        {
+          label: 'Clothing',
+          subLabel: 'All White Styles',
+          href: '/menssection',
+        },
+        {
+          label: 'Brands',
+          subLabel: 'Trending Now',
+          href: '/menssection',
+        },
+        {
+          label: 'Recent Releases',
+          href: '/menssection',
+        },      
       ]
     },
     {
       label: 'WOMEN',
       children: [
         {
-          label: 'Job Board',
-          subLabel: 'Find your dream design job',
-          href: '#',
+          label: 'Shoes',
+          subLabel: 'Trending Styles',
+          href: '/menssection',
         },
         {
-          label: 'Freelance Projects',
-          subLabel: 'An exclusive list for contract work',
-          href: '#',
+          label: 'Clothing',
+          subLabel: 'All White Styles',
+          href: '/menssection',
         },
+        {
+          label: 'Brands',
+          subLabel: 'Trending Now',
+          href: '/menssection',
+        },
+        {
+          label: 'Recent Releases',
+          href: '/menssection',
+        }, 
       ],
     },
     {
       label: 'BOYS',
       children: [
         {
-          label: 'Job Board',
-          subLabel: 'Find your dream design job',
-          href: '#',
+          label: 'Shoes',
+          subLabel: 'Trending Styles',
+          href: '/menssection',
         },
         {
-          label: 'Freelance Projects',
-          subLabel: 'An exclusive list for contract work',
-          href: '#',
+          label: 'Clothing',
+          subLabel: 'All White Styles',
+          href: '/menssection',
         },
+        {
+          label: 'Brands',
+          subLabel: 'Trending Now',
+          href: '/menssection',
+        },
+        {
+          label: 'Recent Releases',
+          href: '/menssection',
+        }, 
       ],
     },
     {
       label: 'GIRLS',
       children: [
         {
-          label: 'Job Board',
-          subLabel: 'Find your dream design job',
-          href: '#',
+          label: 'Shoes',
+          subLabel: 'Trending Styles',
+          href: '/menssection',
         },
         {
-          label: 'Freelance Projects',
-          subLabel: 'An exclusive list for contract work',
-          href: '#',
+          label: 'Clothing',
+          subLabel: 'All White Styles',
+          href: '/menssection',
         },
+        {
+          label: 'Brands',
+          subLabel: 'Trending Now',
+          href: '/menssection',
+        },
+        {
+          label: 'Recent Releases',
+          href: '/menssection',
+        }, 
       ],
     },
     {
       label: 'CLOTHING',
       children: [
         {
-          label: 'Job Board',
-          subLabel: 'Find your dream design job',
-          href: '#',
+          label: "Men's Clothing",
+          subLabel: 'Trending Styles',
+          href: '/menssection',
         },
         {
-          label: 'Freelance Projects',
-          subLabel: 'An exclusive list for contract work',
-          href: '#',
+          label: "Women's Clothing",
+          subLabel: 'All White Styles',
+          href: '/menssection',
         },
+        {
+          label: "Girl's Clothing",
+          subLabel: 'Trending Now',
+          href: '/menssection',
+        },
+        {
+          label:  "Boy's Clothing",
+          subLabel: 'Trending Now',
+          href: '/menssection',
+        }, 
       ],
     },
     {
       label: 'ACCESSARIES',
       children: [
         {
-          label: 'Job Board',
-          subLabel: 'Find your dream design job',
-          href: '#',
+          label: "Men's Accessories",
+          href: '/menssection',
         },
         {
-          label: 'Freelance Projects',
-          subLabel: 'An exclusive list for contract work',
-          href: '#',
+          label: "Women's Accessories",
+          href: '/menssection',
+        },
+        {
+          label: "Girl's Accessories",
+          href: '/menssection',
+        },
+        {
+          label:  "Boy's Accessories",
+          href: '/menssection',
         },
       ],
     },
@@ -370,28 +432,52 @@ const DesktopNav = () => {
       label: 'SALE',
       children: [
         {
-          label: 'Job Board',
-          subLabel: 'Find your dream design job',
-          href: '#',
+          label: "Mens",
+          href: '/menssection',
         },
         {
-          label: 'Freelance Projects',
-          subLabel: 'An exclusive list for contract work',
-          href: '#',
+          label: "Womens",
+          href: '/menssection',
         },
+        {
+          label: "Girls",
+          href: '/menssection',
+        },
+        {
+          label:  "Boys",
+          href: '/menssection',
+        },
+        {
+          label:  "Hot Deals",
+          href: '/menssection',
+        }
       ],
     },
     {
       label: 'BRAND',
       children: [
         {
-          label: 'Job Board',
-          subLabel: 'Find your dream design job',
+          label: 'Nike',
           href: '#',
         },
         {
-          label: 'Freelance Projects',
-          subLabel: 'An exclusive list for contract work',
+          label: 'Adidas',
+          href: '#',
+        },
+        {
+          label: 'Puma',
+          href: '#',
+        },
+        {
+          label: 'Crocs',
+          href: '#',
+        },
+        {
+          label: 'Reebok',
+          href: '#',
+        },
+        {
+          label: 'Vans',
           href: '#',
         },
       ],

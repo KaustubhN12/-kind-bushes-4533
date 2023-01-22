@@ -6,13 +6,16 @@ import {
   Flex,
   Icon,
   useColorModeValue,
-  Link,
   Drawer,
   DrawerContent,
   Text,
   useDisclosure,
   BoxProps,
   FlexProps,
+  Button,
+  Image,
+  Grid,
+  GridItem
 } from '@chakra-ui/react';
 import {
   FiHome,
@@ -24,22 +27,24 @@ import {
 } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
+import { Link } from 'react-router-dom';
 
 const LinkItems = [
-  { name: 'Home', icon: FiHome },
-  { name: 'Trending', icon: FiTrendingUp },
-  { name: 'Explore', icon: FiCompass },
-  { name: 'Favourites', icon: FiStar },
-  { name: 'Settings', icon: FiSettings },
+  { name: 'Home', icon: FiHome }
 ];
 
-export default function SimpleSidebar({ children }) {
+export default function SimpleSidebar({ children,menProducts,setMenProducts}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
+ console.log(menProducts)
+
+
   return (
     <Box minH={["0px","100vh","100vh"]} bg={useColorModeValue('gray.100', 'gray.900')}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
+        menProducts={menProducts} 
+        setMenProducts={setMenProducts}
       />
       <Drawer
         autoFocus={false}
@@ -50,7 +55,7 @@ export default function SimpleSidebar({ children }) {
         onOverlayClick={onClose}
         size="full">
         <DrawerContent>
-          <SidebarContent onClose={onClose} />
+          <SidebarContent menProducts={menProducts} setMenProducts={setMenProducts} onClose={onClose} />
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
@@ -58,12 +63,67 @@ export default function SimpleSidebar({ children }) {
       <Box ml={{ base: 0, md: 60 }} p="4">
         {children}
       </Box>
+
     </Box>
   );
 }
 
 
-const SidebarContent = ({ onClose, ...rest }) => {
+const SidebarContent = ({menProducts,setMenProducts, onClose,...rest }) => {
+  const handleAsc = () => {
+    setMenProducts(menProducts);
+    let Ascdata= menProducts.sort((a,b)=>a.price-b.price);
+    setMenProducts([...Ascdata]);
+   }
+   const handleDesc = () => {
+    setMenProducts(menProducts);
+    let Descdata= menProducts.sort((a,b)=>b.price-a.price);
+    setMenProducts([...Descdata]);
+   }
+   const handleAdidas = () => {
+    setMenProducts(menProducts);
+    let data = menProducts.filter((el)=> {
+      return el.brand=="Adidas"
+    })
+    setMenProducts([...data])
+   }
+   const handleNike = () => {
+    setMenProducts(menProducts);
+    let data = menProducts.filter((el)=> {
+      return el.brand=="Nike"
+    })
+    setMenProducts([...data])
+   }
+   const handleCrocs = () => {
+    setMenProducts(menProducts);
+    let data = menProducts.filter((el)=> {
+      return el.brand=="Crocs"
+    })
+    setMenProducts([...data])
+   }
+   const handlePuma = () => {
+    setMenProducts(menProducts);
+    let data = menProducts.filter((el)=> {
+      return el.brand=="Puma"
+    })
+    setMenProducts([...data])
+   }
+   const handleVans = () => {
+    setMenProducts(menProducts);
+    let data = menProducts.filter((el)=> {
+      return el.brand=="Vans"
+    })
+    setMenProducts([...data])
+   }
+   const handleReebok = () => {
+    setMenProducts(menProducts);
+      let data = menProducts.filter((el)=> {
+        return el.brand=="Reebok"
+      })
+      setMenProducts([...data])
+   }
+
+  
   return (
     <Box
       bg={useColorModeValue('white', 'gray.900')}
@@ -79,11 +139,43 @@ const SidebarContent = ({ onClose, ...rest }) => {
         </Text> */}
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
-          {link.name}
+     
+        <NavItem icon={FiHome}>
+        <Link to={"/"}>Home</Link>
         </NavItem>
-      ))}
+        <Box marginTop={"30px"} marginLeft={"20px"}>
+       <Button marginBottom={"10px"} onClick={handleAsc} >Price: low to high</Button>
+       <Button marginBottom={"10px"} onClick={handleDesc}>Price: high to low</Button>
+       </Box>
+       <Box>
+         <Text marginLeft={"20px"} marginBottom="10px" fontSize="xl" fontWeight={"550"}>Brands</Text>
+       </Box>
+       <Grid marginLeft="20px" marginRight="20px" templateColumns='repeat(3, 1fr)' gap={2}>
+         <GridItem onClick={handleNike} padding={"8px"} border={"1px solid gray"} borderRadius="6px">
+          <Image src="https://i.ibb.co/K0yqCzs/nike.png"/>
+          <Text fontSize={"xs"} fontWeight={"600"}>Nike</Text>
+         </GridItem>
+         <GridItem onClick={handleAdidas} padding={"8px"} border={"1px solid gray"} borderRadius="6px">
+          <Image src="https://i.ibb.co/J29Ds3N/adidas.png"/>
+          <Text fontSize={"xs"} fontWeight={"600"}>Adidas</Text>
+         </GridItem>
+         <GridItem onClick={handlePuma} padding={"8px"} border={"1px solid gray"} borderRadius="6px">
+          <Image width={"85%"} src="https://i.ibb.co/6NpvN8Y/icons8-puma-a-german-multinational-company-designs-and-manufactures-athletic-and-casual-footwear-app.png"/>
+          <Text fontWeight={"600"} fontSize={"xs"} >PUMA</Text>
+         </GridItem>
+         <GridItem onClick={handleCrocs}  padding={"8px"} border={"1px solid gray"} borderRadius="6px">
+          <Image width={"80%"} src="https://i.ibb.co/1dT2WRS/crocs.png"/>
+          <Text fontSize={"xs"} fontWeight={"600"}>Crocs</Text>
+         </GridItem>
+         <GridItem onClick={handleReebok}  padding={"8px"} border={"1px solid gray"} borderRadius="6px">
+          <Image width={"80%"} src="https://i.ibb.co/2n9Y71g/icons8-reebok-an-english-footwear-and-apparel-company-produces-and-distributes-sportswear-clothing-a.png"/>
+          <Text fontSize={"xs"} fontWeight={"600"}>Reebok</Text>
+         </GridItem>
+         <GridItem onClick={handleVans}  padding={"8px"} border={"1px solid gray"} borderRadius="6px">
+          <Image width={"80%"} src="https://i.ibb.co/d7PZP5z/icons8-vans-an-american-manufacturer-of-skateboarding-shoes-96.png"/>
+          <Text fontSize={"xs"} fontWeight={"600"}>Vans</Text>
+         </GridItem>
+      </Grid>
     </Box>
   );
 };
@@ -121,7 +213,7 @@ const NavItem = ({ icon, children, ...rest }) => {
 };
 
 
-const MobileNav = ({ onOpen, ...rest }) => {
+const MobileNav = ({ onOpen,...rest }) => {
   return (
     <Flex
       ml={{ base: 0, md: 60 }}

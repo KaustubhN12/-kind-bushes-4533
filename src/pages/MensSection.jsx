@@ -25,7 +25,7 @@ return (
   <Nav/>
   <Flex>
       <Box w={["0%","0%","17%"]} height="auto" >
-         <SimpleSidebar/>
+         <SimpleSidebar menProducts={menProducts} setMenProducts={setMenProducts}/>
       </Box>
       <Box marginTop={["60px","60px","40px"]} pl={["10px","30px","30px"]} pr={["10px","30px","30px"]}> 
       <Text marginBottom={"30px"} fontSize={"3xl"} fontWeight="500"> Men's Shoes</Text>      
