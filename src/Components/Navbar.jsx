@@ -63,7 +63,7 @@ export default function Nav () {
            <Box as='span' fontSize={"24px"} color="gray.300">
               <FaPhoenixSquadron/>
             </Box>
-            <Box>Account</Box>
+            <Box><Link to="/signin">Account</Link></Box>
             </Box>
             <Box display={"flex"} border={"1px solid gray"} py="9px" paddingLeft={["88px","88px","5px"]} paddingRight={["88px","88px","5px"]} >
            <Box as='span' fontSize={"24px"} color="gray.300">
@@ -143,7 +143,7 @@ const DesktopNav = () => {
               <PopoverTrigger>
                 <Link
                   p={2}
-                  to={navItem.href ?? '#'}
+                  to={navItem.href}
                   fontSize={'sm'}
                   color={linkColor}
                   _hover={{
@@ -231,7 +231,7 @@ const DesktopNav = () => {
         <Flex
           py={2}
           as={Link}
-          href={href ?? '#'}
+          to={href}
           justify={'space-between'}
           align={'center'}
           _hover={{
@@ -263,7 +263,7 @@ const DesktopNav = () => {
             align={'start'}>
             {children &&
               children.map((child) => (
-                <Link key={child.label} py={2} href={child.href}>
+                <Link key={child.label} py={2} to={child.href}>
                   {child.label}
                 </Link>
               ))}

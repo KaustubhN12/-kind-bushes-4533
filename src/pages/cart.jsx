@@ -80,7 +80,7 @@ export default function Cart () {
             </Box>
             
             <Box>
-             ghgfhf
+             {/* ghgfhf */}
             </Box>
             </Box>
 
