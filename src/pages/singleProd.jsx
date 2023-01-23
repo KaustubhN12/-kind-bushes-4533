@@ -36,7 +36,7 @@ import { useToast } from '@chakra-ui/react'
     let params = useParams();
     // console.log(params)
     const getSingleprod = () => {
-      axios.get(`http://localhost:8080/mensproduct/${params.prod_id}`).then((data)=>setData(data.data)).catch((err)=>console.log(err))
+      axios.get(`https://brandstore.onrender.com/mensproduct/${params.prod_id}`).then((data)=>setData(data.data)).catch((err)=>console.log(err))
     }
     useEffect(()=>{
        getSingleprod()
@@ -51,7 +51,6 @@ import { useToast } from '@chakra-ui/react'
           isClosable: true,
         })
     }
-console.log(cartItem);
     return (
         <>
         <Nav/>
