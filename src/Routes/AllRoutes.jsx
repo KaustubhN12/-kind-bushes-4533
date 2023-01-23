@@ -13,6 +13,7 @@ import MensSection from '../pages/MensSection';
 import Cart from '../pages/cart';
 import SignIn from '../pages/signIn';
 import Register from '../pages/Register';
+import Checkout from '../pages/Ckeckout';
 
 
 const AllRoutes = () => {
@@ -25,6 +26,7 @@ const AllRoutes = () => {
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/signin' element={<SignIn/>}/>
             <Route path='/register' element={<Register/>}/>
+            <Route path='/checkout' element={<Checkout/>}/>
         </Routes>
   
         </div>

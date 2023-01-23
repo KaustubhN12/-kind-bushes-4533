@@ -13,8 +13,23 @@ import {
     Image,
   } from '@chakra-ui/react';
   import { Link } from 'react-router-dom';
-  
+  import { useNavigate } from "react-router-dom";
+  import { useToast } from '@chakra-ui/react'
   export default function Signin() {
+    const toast = useToast();
+    const navigate = useNavigate();
+    const handlelogin = () => {
+     setTimeout(() => {
+      toast({
+        title: 'logged in successfully',
+        status: 'success',
+        duration: 4000,
+        isClosable: true,
+      })
+     navigate("/")
+     }, 1000);
+    }
+
     return (
         <>
        <Box width={"30%"} margin="auto">
@@ -55,6 +70,7 @@ import {
                 <Button
                   bg={'blue.400'}
                   color={'white'}
+                  onClick={handlelogin}
                   _hover={{
                     bg: 'blue.500',
                   }}>

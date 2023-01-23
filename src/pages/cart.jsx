@@ -6,15 +6,19 @@ import { Link } from "react-router-dom";
 import LargeWithNewsletter from "../Components/Footer";
 import { DeleteIcon } from "@chakra-ui/icons";
 import { Scrollbars } from 'react-custom-scrollbars-2';
-
+import { useNavigate } from "react-router-dom";
 export default function Cart () {
-
     const {cartItem,setcartItem} = useContext(CartContext);
+    const totalProdinCart = cartItem.length;
+    const navigate = useNavigate();
+    const handleProceed = () => {
+      navigate("/checkout")
+    }
 
-    // const handleDelete = (id) => {
-
-    // }
-  console.log(cartItem)
+    let totalprice =0
+    cartItem.forEach((el)=>{
+       totalprice+=el.price
+    })
     if(cartItem.length==0){
         return(
             <>
@@ -81,6 +85,14 @@ export default function Cart () {
             
             <Box>
              {/* ghgfhf */}
+
+               <Box padding={"30px"}>
+                 <Text fontSize={"5xl"} fontWeight="500">Checkout</Text>
+                 <Text fontSize={"l"}>Total items:{totalProdinCart}</Text>
+                 <Text fontSize={"l"}>Subtotal:${totalprice}</Text>
+                 <Text fontSize={"l"}>Shipping:Free</Text>
+               </Box>
+              <Button onClick={handleProceed} marginLeft="20px">Proceed to Ckeckout</Button>
             </Box>
             </Box>
 
