@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import {
   IconButton,
   Box,
@@ -10,8 +10,6 @@ import {
   DrawerContent,
   Text,
   useDisclosure,
-  BoxProps,
-  FlexProps,
   Button,
   Image,
   Grid,
@@ -19,24 +17,17 @@ import {
 } from '@chakra-ui/react';
 import {
   FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
   FiMenu,
 } from 'react-icons/fi';
-import { IconType } from 'react-icons';
-import { ReactText } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const LinkItems = [
   { name: 'Home', icon: FiHome }
 ];
 
-export default function SimpleSidebar({ children,menProducts,setMenProducts}) {
+export default function SimpleSidebar({ children,menProducts,setMenProducts,setLoading}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
- console.log(menProducts)
-
 
   return (
     <Box minH={["0px","100vh","100vh"]} bg={useColorModeValue('gray.100', 'gray.900')}>
@@ -45,6 +36,7 @@ export default function SimpleSidebar({ children,menProducts,setMenProducts}) {
         display={{ base: 'none', md: 'block' }}
         menProducts={menProducts} 
         setMenProducts={setMenProducts}
+        setLoading={setLoading}
       />
       <Drawer
         autoFocus={false}
@@ -55,7 +47,7 @@ export default function SimpleSidebar({ children,menProducts,setMenProducts}) {
         onOverlayClick={onClose}
         size="full">
         <DrawerContent>
-          <SidebarContent menProducts={menProducts} setMenProducts={setMenProducts} onClose={onClose} />
+          <SidebarContent menProducts={menProducts} setMenProducts={setMenProducts} setLoading={setLoading} onClose={onClose} />
         </DrawerContent>
       </Drawer>
       {/* mobilenav */}
@@ -69,7 +61,11 @@ export default function SimpleSidebar({ children,menProducts,setMenProducts}) {
 }
 
 
-const SidebarContent = ({menProducts,setMenProducts, onClose,...rest }) => {
+const SidebarContent = ({menProducts,setMenProducts,setLoading, onClose,...rest }) => {
+
+  const getData = (filter) => {
+    axios.get(`https://brandstore.onrender.com/mensproduct?brand=${filter}`).then((data)=>setMenProducts(data.data)).catch((err)=>console.log(err));
+   }
   const handleAsc = () => {
     setMenProducts(menProducts);
     let Ascdata= menProducts.sort((a,b)=>a.price-b.price);
@@ -81,46 +77,25 @@ const SidebarContent = ({menProducts,setMenProducts, onClose,...rest }) => {
     setMenProducts([...Descdata]);
    }
    const handleAdidas = () => {
-    setMenProducts(menProducts);
-    let data = menProducts.filter((el)=> {
-      return el.brand=="Adidas"
-    })
-    setMenProducts([...data])
+     getData("Adidas")
    }
    const handleNike = () => {
-    setMenProducts(menProducts);
-    let data = menProducts.filter((el)=> {
-      return el.brand=="Nike"
-    })
-    setMenProducts([...data])
+    getData("Nike")
    }
    const handleCrocs = () => {
-    setMenProducts(menProducts);
-    let data = menProducts.filter((el)=> {
-      return el.brand=="Crocs"
-    })
-    setMenProducts([...data])
+    getData("Crocs")
    }
    const handlePuma = () => {
-    setMenProducts(menProducts);
-    let data = menProducts.filter((el)=> {
-      return el.brand=="Puma"
-    })
-    setMenProducts([...data])
+    getData("Puma")
    }
    const handleVans = () => {
-    setMenProducts(menProducts);
-    let data = menProducts.filter((el)=> {
-      return el.brand=="Vans"
-    })
-    setMenProducts([...data])
+    getData("Vans")
    }
    const handleReebok = () => {
-    setMenProducts(menProducts);
-      let data = menProducts.filter((el)=> {
-        return el.brand=="Reebok"
-      })
-      setMenProducts([...data])
+    getData("Reebok")
+   }
+   const handleReset = () => {
+    axios.get(`https://brandstore.onrender.com/mensproduct`).then((data)=>setMenProducts(data.data)).catch((err)=>console.log(err)); 
    }
 
   
@@ -176,6 +151,7 @@ const SidebarContent = ({menProducts,setMenProducts, onClose,...rest }) => {
           <Text fontSize={"xs"} fontWeight={"600"}>Vans</Text>
          </GridItem>
       </Grid>
+      <Button marginLeft={"20px"} marginTop="10px" onClick={handleReset}>Reset All</Button>
     </Box>
   );
 };
