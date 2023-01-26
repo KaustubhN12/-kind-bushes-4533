@@ -2,31 +2,64 @@ import { Badge, Box, Flex, Grid, GridItem, Image, Text } from "@chakra-ui/react"
 import { useEffect, useState } from "react";
 import Nav from "../Components/Navbar";
 import SimpleSidebar from "../Components/sideBar";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import { StarIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import LargeWithNewsletter from "../Components/Footer";
-import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
+import { Skeleton, Stack, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
 
 
 export default function MensSection () {
 
   const [menProducts,setMenProducts] = useState([]);
+  const [loading,setLoading] = useState(false)
   
-  const getData = () => {
-   axios.get(`https://brandstore.onrender.com/mensproduct`).then((data)=>setMenProducts(data.data)).catch((err)=>console.log(err));   
-  }
+  const getData = () => { 
+   return axios.get(`https://brandstore.onrender.com/mensproduct`);
+   }
+  const loaderArr = [1,2,3,4,5,6,7,8]
 
   useEffect(()=>{
-   getData();
+    setLoading(true);
+    getData().then((data)=>{
+      setMenProducts(data.data);
+      setLoading(false)
+    }).catch((err)=>console.log(err));
   },[])
 
-return (
+return loading?(
+  
+  <>
+   <Nav/>
+   <Flex>
+     <Box  w={["0%","0%","17%"]} height="auto" >
+      <SimpleSidebar setLoading={setLoading}/>
+     </Box>
+     <Box marginTop={["60px","60px","40px"]} pl={["10px","30px","30px"]} pr={["10px","30px","30px"]}>
+     <Text marginBottom={"30px"} fontSize={"3xl"} fontWeight="500"> Men's Shoes</Text>  
+     <Grid templateColumns={['repeat(1, 1fr)','repeat(2, 1fr)','repeat(4, 1fr)']} gap={3}>
+        {
+          loaderArr.map((item)=>{
+            return <GridItem key={item}>
+              <Box height={"350px"} width="260px" maxW='sm' borderWidth='1px' overflow='hidden' >
+              <Skeleton height='350px' />
+              </Box>
+            </GridItem>
+          })
+        }
+     </Grid>
+     </Box>
+   </Flex>
+ 
+   
+   </>
+
+) :(
    <>
   <Nav/>
   <Flex>
       <Box w={["0%","0%","17%"]} height="auto" >
-         <SimpleSidebar menProducts={menProducts} setMenProducts={setMenProducts}/>
+         <SimpleSidebar menProducts={menProducts} setMenProducts={setMenProducts} setLoading={setLoading}/>
       </Box>
       <Box marginTop={["60px","60px","40px"]} pl={["10px","30px","30px"]} pr={["10px","30px","30px"]}> 
       <Text marginBottom={"30px"} fontSize={"3xl"} fontWeight="500"> Men's Shoes</Text>      
